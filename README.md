@@ -1,65 +1,81 @@
-# Week 5: Databases and Web Applications - Bridging the Gap 
+# Expense Tracker Application
 
-Great work last week! You've mastered data manipulation in your Expense Tracker. This week, we'll develop a web application using Node.js, Express, and MySQL to manage personal expenses. The application should provide user authentication and functionalities for adding, viewing, and (optionally) editing/deleting expenses.
+## Description
 
-## Submission: 
-* **Clone** this repo Not ~~Fork~~
-* You have been given starter code, use it , modify it as you work on this project
-* Test and commit your changes **on this repo**
+The Expense Tracker Application is a robust web application designed to help users manage their personal finances by tracking their income and expenses. Built with a Node.js and Express.js backend, and a frontend developed using HTML, CSS, and JavaScript, this application provides a seamless experience for users to monitor their spending habits and make informed financial decisions.
 
-### Project Setup:
-**1.** Create a well-structured Node.js project directory with your server-side code.
+## Features
 
-**2.** Install required dependencies including express, mysql, body-parser, and a password hashing library (e.g., bcryptjs).
+- **User Authentication**: Implemented secure user registration and login using sessions or cookies to manage user sessions.
+- **Expense Management**: Users can add, edit, delete, and view their expenses.
+- **Income Management**: Users can track their income sources and amounts.
+- **Expense Categories**: Categorized expenses for better organization and analysis.
+- **Data Visualization**: Integrated interactive charts and graphs to visualize income and expenses.
+- **Responsive Design**: Ensured a mobile-friendly design for a smooth experience on any device.
+- **Error Handling & Validation**: Comprehensive error handling and input validation to ensure data integrity and a smooth user experience.
 
-**3.** Configure a connection to your MySQL database.
+## Deliverables
 
-### Database Schema:
-**1.** Create Users table with columns for id (primary key), username (unique), and password (hashed).
+1. **Backend API**: 
+   - User authentication endpoints (login, registration).
+   - Endpoints for managing expenses (add, edit, delete, view).
+   - Endpoints for managing income (add, edit, delete, view).
 
-**2.** Create an Expenses table with columns for id (primary key), user_id (foreign key referencing Users.id), amount, date, and category.
+2. **Frontend Interface**:
+   - User-friendly interface for managing expenses and income.
+   - Dynamic dashboard displaying expenses and income data.
+   - Visual representation of financial data through charts and graphs.
 
-### User Authentication:
-**1.** Implement user registration and login functionalities (covered in previous assignment).
+3. **Database Integration**:
+   - Designed and implemented a MySQL database schema for storing user data, expenses, and income.
+   - Established a connection between the backend and MySQL using the `mysql2` library.
 
-**2.** Securely store passwords using hashing techniques.
+4. **Security Measures**:
+   - Implemented session management for secure user authentication.
+   - Applied input validation and error handling to prevent security vulnerabilities.
 
-### Expense Management:
-**1.** Add Expense: Develop a functionality for authenticated users to add new expenses with details like amount, date, and category.
+5. **Deployment**:
+   - Deployed the application on a cloud platform, making it accessible to users online.
 
-### View Expenses: 
-**1.** Allow users to view their past expenses filtered by their user ID.
+## Getting Started
 
-### (Optional): 
-Implement functionalities for authenticated users to edit or delete existing expenses (consider authorization and confirmation steps).
+### Prerequisites
 
-### Security:
-**1.** Emphasize secure password storage (hashed, not plain text).
-**2.** Consider user authentication and authorization for accessing expense functionalities.
+- Node.js and npm installed
+- MySQL database setup
 
-### Deliverables:
+### Installation
 
-**1.** A well-documented Node.js project directory with your server code.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ogolaSospeter/ExpenseApp
+   ```
+2. Install dependencies:
+   ```bash
+   cd expense-tracker-app
+   npm install
+   ```
+3. Set up environment variables:
+   - Create a `.env` file in the root directory.
+   - Add your MySQL database credentials and session secret.
+4. Run the application:
+   ```bash
+   npm start
+   ```
 
-**2.** A clear README.md file explaining project setup, dependencies, functionalities, and instructions to run the application.
+## Usage
 
-**3.** A functional Node.js server demonstrating the required functionalities and interaction with the MySQL database.
+1. Register a new user account.
+2. Log in with your credentials.
+3. Start adding, editing, and deleting your expenses and income.
+4. View your financial data on the dashboard with interactive charts and graphs.
 
-### Bonus (Optional)
+## Contributing
 
-1.1. Database Server Comparison:  
-Create a table comparing the following database server options (focusing on its role as a web application environment): 
-* MySQL
-* PostgreSQL
-* Microsoft SQL Server
-* Oracle Database
-* Node.js 
+Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
 
-**Include details like (Tabulate):**
+## License
 
-1. Type (Open-Source/Commercial)
-2. Target Audience
-3. Key Features
-4. Ease of Use
+This project is licensed under the MIT License.
 
-* Upload the table in a document or as a picture onto this repo. 
+---
