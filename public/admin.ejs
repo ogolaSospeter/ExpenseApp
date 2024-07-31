@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <section id="admin">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <!-- Add your navbar content here -->
+        </nav>
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="<%= session.image %>" alt="Admin Image">
+                <h6>
+                    <%= session.name %>
+                </h6>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <% adminNavs.forEach(nav => { %>
+                        <li>
+                            <a href="<%= nav.url %>">
+                                <%= nav.name %>
+                            </a>
+                        </li>
+                        <% }) %>
+                            <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <div class="row-cols-1">
+                    <i>Logged in as</i>
+                    <p style="font-style: italic; font-display:unset;font-variant-ligatures: discretionary-ligatures;">
+                        <%= session.username %>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container cards-position">
+            <div class="row">
+                <% cardData.forEach(dataCard => { %>
+                    <div class="col-md-5">
+                        <a class="card-clickable" href="">
+                            <div class="card">
+                                <div class="card-body" style="background: url('<%= dataCard.image %>') no-repeat right; background-size: 180px 200px;">
+                                    <h1 class="card-text" style="font-weight: 600;">
+                                        <%= dataCard.value %>
+                                    </h1>
+                                    <p class="card-text">
+                                        <%= dataCard.name %>
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="card-txt" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: small; font-variant-ligatures: common-ligatures;">
+                                        <%= dataCard.name %> in the Expense Tracker on
+                                            <%= new Date().toLocaleDateString() %>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <% if ((loop.index + 1) % 2 === 0 && !loop.last) { %>
+                        <div class="row"></div>
+                        <% } %>
+                            <% }) %>
+            </div>
+        </div>
+        <div class="container chart">
+            <canvas id="expenseChart" class="chart" style="width:100%;max-width:600px"></canvas>
+        </div>
+        <div class="container chart">
+            <canvas id="categoryChart" class="chart" style="width:100%;max-width:600px"></canvas>
+        </div>
+    </section>
+
+    <script>
+        fetch('/chartdata')
+            .then(response => response.json())
+            .then(data => {
+                console.log("Data received:", data);
+                var xValues = data.map(expense => expense.category);
+                var yValues = data.map(expense => expense.amount);
+                var barColors = ["red", "green", "blue", "orange", "brown", "purple", "pink", "yellow", "grey", "cyan"];
+
+                yValues = yValues.map(value => parseFloat(value).toFixed(2));
+
+                var chart = new Chart("expenseChart", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: "Expense Breakdown by Category"
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching chart data:", error);
+            });
+
+        fetch('/chartdata')
+            .then(response => response.json())
+            .then(data => {
+                console.log("Data received:", data);
+                var categories = data.map(expense => expense.category);
+                var amounts = data.map(expense => expense.amount);
+                var barColors = ["yellow", "cyan", "violet", "orange", "brown", "purple", "pink", "grey", "green", "blue"];
+
+                var piechart = new Chart("categoryChart", {
+                    type: "pie",
+                    data: {
+                        labels: categories,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: amounts
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "Expenses by Category"
+                        },
+                        legend: {
+                            display: true,
+                            position: "top",
+                            labels: {
+                                generateLabels: function(chart) {
+                                    var data = chart.data || {};
+                                    var labels = data.labels || [];
+                                    var datasets = data.datasets || [];
+
+                                    return labels.map(function(label, i) {
+                                        var dataset = datasets[0] || {};
+                                        var value = dataset.data && dataset.data[i];
+                                        return {
+                                            text: label + ' - ' + ' (' + (value || 0) + ')',
+                                            fillStyle: dataset.backgroundColor && dataset.backgroundColor[i],
+                                            hidden: isNaN(value) || (dataset.hidden && dataset.hidden[i]),
+                                            index: i
+                                        };
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching chart data:", error);
+            });
+    </script>
+</body>
+
+</html>
