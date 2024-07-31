@@ -52,7 +52,7 @@ The Expense Tracker Application is a robust web application designed to help use
    ```
 2. Install dependencies:
    ```bash
-   cd expense-tracker-app
+   cd ExpenseApp
    npm install
    ```
 3. Set up environment variables:
