@@ -31,7 +31,7 @@
 
         } catch (err) {
             console.error(err);
-            alert('Failed to load expense data');
+            alert('Failed to load expense data due to error: ' + err.message);
         }
     });
 
@@ -61,7 +61,7 @@
             }
 
             alert('Expense updated successfully');
-            window.location.href = './dashboard.html';
+            window.location.href = './dashboard';
         } catch (err) {
             console.error(err);
             alert('Failed to update expense');
@@ -87,31 +87,3 @@
             document.getElementById('errorMessage').innerText = 'Failed to load categories: ' + error.message;
         }
     });
-
-
-
-
-
-
-
-
-
-
-    // async function getCategories() {
-    //     try {
-    //         const response = await fetch('/api/categories');
-    //         if (!response.ok) {
-    //             throw new Error('Failed to fetch categories');
-    //         }
-    //         const data = await response.json();
-    //         const categorySelect = document.getElementById('category');
-    //         data.categories.forEach(category => {
-    //             const option = document.createElement('option');
-    //             option.value = category.category;
-    //             option.textContent = category.category.charAt(0).toUpperCase() + category.category.slice(1); // Capitalize first letter
-    //             categorySelect.appendChild(option);
-    //         });
-    //     } catch (error) {
-    //         document.getElementById('errorMessage').innerText = 'Failed to load categories: ' + error.message;
-    //     }
-    // }

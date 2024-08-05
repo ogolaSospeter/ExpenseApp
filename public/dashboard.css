@@ -1,0 +1,86 @@
+@import '~mdb-ui-kit/css/mdb.min.css';
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+
+/* Color of the links BEFORE scroll */
+
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+    color: #262626;
+}
+
+
+/* Color of the navbar BEFORE scroll */
+
+.navbar-scroll {
+    background-color: #FFC017;
+}
+
+
+/* Color of the links AFTER scroll */
+
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+    color: #262626;
+}
+
+
+/* Color of the navbar AFTER scroll */
+
+.navbar-scrolled {
+    background-color: #fff;
+}
+
+
+/* An optional height of the navbar AFTER scroll */
+
+.navbar.navbar-scroll.navbar-scrolled {
+    padding-top: auto;
+    padding-bottom: auto;
+}
+
+.navbar-brand {
+    font-size: unset;
+    height: 3.5rem;
+}
+
+.cards-container {
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* Adjusts spacing between cards */
+}
+
+.card {
+    flex: 1 1 calc(25% - 20px);
+    /* 25% width minus some margin */
+    margin: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    /* Optional: Adds a border to the card */
+    border-radius: 8px;
+    /* Optional: Rounds the corners of the card */
+    height: 200px;
+    /* Set a fixed height for the cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -19,7 +19,7 @@ document.getElementById('registerButton').addEventListener('click', async() => {
         if (res.ok) {
             alert('Registered successfully. Redirecting to login page...');
             setTimeout(() => {
-                window.location.href = '/login.html'; // Redirect to login page after successful registration
+                window.location.href = '/'; // Redirect to login page after successful registration
             }, 2000);
         } else {
             const error = await res.text();

@@ -10,22 +10,9 @@
     <title> Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./dashboard.js"></script>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th,
-        td {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-        }
-        
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
+    <link rel="stylesheet" href="./dashboard.css">
+
+
 </head>
 
 <body style="background-color: whitesmoke;">
@@ -50,10 +37,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/addExpense" class="nav-link">Add Expense</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Projects</a>
+                        <a href="/add-expense" class="nav-link">Add Expense</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -86,100 +70,87 @@
                     </ul>
                 </div>
                 <!-- Avatar -->
-                <div class="dropdown">
-                    <a data-mdb-dropdown-init class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" />
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                        <li>
-                            <a class="dropdown-item" href="#">My profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Settings</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </li>
-                    </ul>
+                <div class="<i class=" fa fa-columns " aria-hidden="true "></i>">
+                    <div class="dropdown">
+                        <a data-mdb-dropdown-init class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" />
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <a class="dropdown-item" href="#">My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Settings</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <subtitle style="color: rgb(151, 89, 13);" id="username"></subtitle>
+
                 </div>
+                <!-- Right elements -->
             </div>
-            <!-- Right elements -->
-        </div>
-        <!-- Container wrapper -->
+            <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    <h1 style="text-align: center; color: blue;">My Expenses Dashboard</h1>
-    <section id="admin">
-        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <h1 style="text-align: center; color: blue;" id="mainheader"></h1>
 
-        </nav>
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <img src="{{session['image']}}" alt="Admin Image">
-                <h6>{{session['name']}}</h6>
-            </div>
-            <div class="sidebar-menu">
-                <ul>
-                    {% for nav in adminNavs %}
-                    <li><a href="{{ url_for(nav.url) }}">{{ nav.name }}</a></li>
-                    {% endfor %}
-                    <li><a href="{{url_for('logout')}}">Logout</a></li>
-                    <!-- <div class="container-buttons">
-                    <button type="logout" class="btn-logout btn btn-light btn-lg">Log Out</button>
-                </div> -->
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <div class="row-cols-1">
-                    <i>Logged in as</i>
-                    <p style="font-style: italic; font-display:unset;font-variant-ligatures: discretionary-ligatures;">{{session['useremail']}}</p>
-                </div>
-            </div>
+    <!-- Add an aside-->
+    <aside>
+        <div class="aside">
+            <h3>Categories</h3>
+            <ul id="categoriesList">
+                <!-- Categories will be dynamically added here -->
+            </ul>
         </div>
-        <!-- End of side bar -->
-    </section>
+    </aside>
 
-    <h2 style="color: rgb(151, 89, 13);" id="username"></h2>
+
     <!-- <ul class="nav nav-pills">
       
     </ul> -->
+    <article>
+        <div id="cards-container" class="cards-container">
+        </div>
+        <main>
+            <header>
+                <div>
+                    <h5>Total Expense</h5>
+                    <span id="totalExpense"></span>
+                </div>
+                <br>
+                <section id="categoriesDisplay" style="display: flex; flex-wrap: wrap;">
+                </section>
 
-    <main>
-        <header>
-            <div>
-                <h5>Total Expense</h5>
-                <span id="totalExpense"></span>
-            </div>
-            <br>
-            <section id="categoriesDisplay" style="display: flex; flex-wrap: wrap;">
+            </header>
+
+            <section>
+                <h3>Transactions History</h3>
+                <ul id="transactionList"></ul>
+                <div id="status"></div>
             </section>
-
-        </header>
-
-        <section>
-            <h3>Transactions History</h3>
-            <ul id="transactionList"></ul>
-            <div id="status"></div>
-        </section>
-        <br>
-        <section>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Expense ID</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody id="expensesTableBody">
-                    <!-- Expenses will be dynamically added here -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+            <br>
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Expense ID</th>
+                            <th>Amount (Ksh.)</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expensesTableBody">
+                        <!-- Expenses will be dynamically added here -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </article>
 
 </body>
 

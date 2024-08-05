@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
 body {
     margin: 0;
     padding: 0;
@@ -6,28 +5,24 @@ body {
     color: #F2F2F2;
 }
 
-#container-login {
-    background-color: #FCFCFC;
-    position: relative;
-    top: 20%;
-    margin: auto;
-    width: 340px;
-    height: 445px;
-    border-radius: 0.35em;
-    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25);
-    text-align: center;
-}
-
+#container-login,
 #container-register {
     background-color: #FCFCFC;
     position: relative;
     top: 20%;
     margin: auto;
     width: 340px;
-    height: 480px;
     border-radius: 0.35em;
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25);
     text-align: center;
+}
+
+#container-login {
+    height: 445px;
+}
+
+#container-register {
+    height: 480px;
 }
 
 #title {
@@ -42,12 +37,12 @@ body {
 }
 
 .lock {
-	position: relative;
-	top: 2px;
+    position: relative;
+    top: 2px;
 }
 
 .input {
-	margin: auto;
+    margin: auto;
     width: 240px;
     border-radius: 4px;
     background-color: #ededed;
@@ -56,48 +51,24 @@ body {
 }
 
 .input-addon {
-	position: relative;
-	top: -2px;
+    position: relative;
+    top: -2px;
     float: left;
     background-color: #ededed;
     border: 1px solid #ededed;
     padding: 4px 8px;
-	color: #757575;
+    color: #757575;
     border-right: 1px solid #757575;
 }
 
 input[type=checkbox] {
-	cursor: pointer;
+    cursor: pointer;
 }
 
-input[type=text] {
-	color: #949494;
-    margin: 0;
-    background-color: #ededed;
-    border: 1px solid #ededed;
-    padding: 6px 0px;
-    border-radius: 3px;
-}
-
-input[type=text]:focus {
-    border: 1px solid #ededed;
-}
-
-input[type=password] {
-	color: #949494;
-    margin: 0;
-    background-color: #ededed;
-    border: 1px solid #ededed;
-    padding: 6px 0px;
-    border-radius: 3px;
-}
-
-input[type=password]:focus {
-    border: 1px solid #ededed;
-}
-
+input[type=text],
+input[type=password],
 input[type=email] {
-	color: #949494;
+    color: #949494;
     margin: 0;
     background-color: #ededed;
     border: 1px solid #ededed;
@@ -105,90 +76,221 @@ input[type=email] {
     border-radius: 3px;
 }
 
+input[type=text]:focus,
+input[type=password]:focus,
 input[type=email]:focus {
     border: 1px solid #ededed;
 }
 
+.forgot-password a:link,
+.forgot-password a:visited,
+.privacy a:link,
+.privacy a:visited {
+    color: #53A7D8;
+    text-decoration: none;
+}
+
 .forgot-password {
-    position: relative;
-    bottom: 0%;
-}
-
-.forgot-password a:link {
-    color: #f7c899;
-    text-decoration: none;
-}
-
-.forgot-password a:visited {
-    color: #f7c899;
-    text-decoration: none;
-}
-
-.forgot-password a:hover {
-    color: #449494;
-    transition: color 1s;
+    margin-top: 15px;
 }
 
 .privacy {
-    margin-top: 5px;
+    margin-top: 10px;
+}
+
+#remember-container {
+    margin: 10px 0px;
+}
+
+.checkbox {
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+    background-color: #53A7D8;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.checkbox-click {
     position: relative;
-    font-size: 12px;
-    bottom: 0%;
+    z-index: 1;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
 }
 
-.privacy a:link {
-    color: #eaa05b;
-    text-decoration: none;
+.checkbox span {
+    position: absolute;
+    font-size: 13px;
+    color: #53A7D8;
+    left: 17px;
+    top: 0px;
+    z-index: 0;
 }
 
-.privacy a:visited {
-    color: #eaa05b;
-    text-decoration: none;
+.checkbox-click:hover {
+    transition: 0.15s;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
 }
 
-.privacy a:hover {
-    color: #549494;
-    transition: color 1s;
+.checkbox span:hover {
+    transition: 0.15s;
+    color: #93D3F4;
 }
 
-*:focus {
-    outline: none;
+.checkbox-click:active {
+    transition: 0.25s;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-.remember-me {
-    margin: 10px 0;
+.checkbox span:active {
+    transition: 0.25s;
+    color: #F2F2F2;
+}
+
+.checkbox:checked {
+    background-color: #93D3F4;
 }
 
 input[type=submit] {
-    padding: 6px 25px;
-    background: #53A7D8;
-    color: #fff;
-    font-weight: bold;
-    border: 0 none;
-    cursor: pointer;
+    background-color: #53A7D8;
+    border: 1px solid #53A7D8;
+    color: #FFF;
     border-radius: 3px;
+    padding: 8px 0px;
+    width: 240px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.register {
-	margin: auto;
-    padding: 16px 0;
+input[type=submit]:hover {
+    transition: 0.25s;
+    background-color: #6EB4DE;
+}
+
+input[type=submit]:active {
+    transition: 0.25s;
+    background-color: #1A87C1;
+}
+
+.button {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #53A7D8;
+    border: 1px solid #53A7D8;
+    border-radius: 3px;
+    padding: 8px 0px;
+    width: 240px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.button:hover {
+    transition: 0.25s;
+    background-color: #6EB4DE;
+}
+
+.button:active {
+    transition: 0.25s;
+    background-color: #1A87C1;
+}
+
+#register {
+    display: inline-block;
+    position: relative;
+    left: -73px;
+    top: 8px;
+}
+
+#login {
+    display: inline-block;
+    position: relative;
+    right: -73px;
+    top: 8px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,200,300,800');
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+main {
+    margin: 2em;
     text-align: center;
-    margin-top: 40px;
-    width: 85%;
-    border-top: 1px solid #C1C3C6;
 }
 
-.clearfix {
-	clear: both;
-}
-
-#register-link {
-    margin-top: 10px;
-    padding: 6px 25px;
+.aside {
     background: #53A7D8;
-    color: #fff;
-    font-weight: bold;
-    border: 0 none;
-    cursor: pointer;
-    border-radius: 3px;
+    padding: 1em;
+    color: white;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.aside h3 {
+    margin-bottom: 1em;
+}
+
+.aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+.aside ul li {
+    margin: 0.5em 0;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 1em;
+    padding: 1em;
+    text-align: left;
+    width: 300px;
+}
+
+.card h3 {
+    color: #53A7D8;
+    margin-bottom: 0.5em;
+}
+
+.card p {
+    color: #666;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+}
+
+table th,
+table td {
+    padding: 0.5em;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background: #53A7D8;
+    color: white;
 }

@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 password.innerText = '';
                 setTimeout(() => {
                     errorElement.innerText = '';
-                    window.location.href = '/register.html'; // Redirect to registration page after a short delay
+                    window.location.href = '/register'; // Redirect to registration page after a short delay
                 }, 2000);
             } else {
                 errorElement.innerText = result.error;
